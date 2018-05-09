@@ -28,8 +28,12 @@ public class Main {
             elementos[i] = gerador.nextInt(99);
         
         BuscaPararela thread;
-        for(int i = 0; i<5; i++)
-           thread = new BuscaPararela("thread" + i, gerador.nextInt(99), elementos);
+        BuscaParalelaSemThreads busca;
+        for(int i = 0; i<5; i++){
+           int teste = gerador.nextInt(99);
+           thread = new BuscaPararela("thread" + i, teste, elementos);
+           busca = new BuscaParalelaSemThreads("busca" + i, teste, elementos);
+        }
             
 
 
