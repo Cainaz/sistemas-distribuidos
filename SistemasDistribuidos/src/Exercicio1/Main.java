@@ -16,7 +16,7 @@ public class Main {
     public static void main(String[] args) {
         
         int tamanho_vetor = 1000000;
-        int numero_threads = 5;
+        int numero_threads = 15;
         int extensao = tamanho_vetor / numero_threads;
         int[] elementos = new int[tamanho_vetor];;
         

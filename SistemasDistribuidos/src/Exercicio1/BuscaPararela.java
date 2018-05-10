@@ -40,7 +40,7 @@ public class BuscaPararela extends Thread {
 
     @Override
     public void run() {
-        /*if(!*/buscaVetor(this.elementos, this.valor, this.inicio, this.fim);/*)*/
-            //System.out.println("Elemento " + this.valor + " nao presente no vetor");
+        buscaVetor(this.elementos, this.valor, this.inicio, this.fim);
+ 
     }
 }
