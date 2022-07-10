@@ -5,6 +5,8 @@
  */
 package Exercicio1;
 
+import java.time.Instant;
+
 /**
  *
  * @author Luiz Guilherme
@@ -12,28 +14,33 @@ package Exercicio1;
 public class BuscaPararela extends Thread {
     int valor;
     int [] elementos;
+    int inicio;
+    int fim;
     String nome;
 
-    BuscaPararela(String nome, int valor, int[] elementos) {
+    BuscaPararela(String nome, int valor, int[] elementos, int inicio, int fim) {
         this.valor = valor;
         this.elementos = elementos;
         this.nome = nome;
+        this.inicio = inicio;
+        this.fim = fim;
         start();
     }
 
-    boolean buscaVetor(int[] vetor, int valor) {
-        for (int i = 0; i < vetor.length; i++) {
+    boolean buscaVetor(int[] vetor, int valor, int inicio, int fim) {
+        Instant start = Instant.now();
+        for (int i = this.inicio; i < this.fim; i++) {
             if (vetor[i] == valor) {
-                System.out.println(this.nome + " encontrou elemento na posição: " + i);
+                System.out.println(this.nome + " encontrou elemento " + this.valor + " na posição: " + i + "; tempo: " + (Instant.now().toEpochMilli() - start.toEpochMilli()));
                 return true;
             }
         }
-        System.out.println(this.nome + " nao encontrou elemento no vetor");
         return false;
     }
 
     @Override
     public void run() {
-        buscaVetor(this.elementos, this.valor);
+        buscaVetor(this.elementos, this.valor, this.inicio, this.fim);
+ 
     }
 }

@@ -6,7 +6,6 @@
 package Exercicio1;
 
 import java.util.Random;
-import java.util.Scanner;
 
 /**
  *
@@ -15,26 +14,26 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        int tamanho_vetor;
-        int[] elementos;
         
-        Scanner scan = new Scanner(System.in);
+        int tamanho_vetor = 1000000;
+        int numero_threads = 15;
+        int extensao = tamanho_vetor / numero_threads;
+        int[] elementos = new int[tamanho_vetor];;
+        
         Random gerador = new Random();
-        
-        tamanho_vetor =  100;//scan.nextInt();
-        elementos = new int[tamanho_vetor];
-        
-        for(int i = 0; i < elementos.length; i++)
-            elementos[i] = gerador.nextInt(99);
+
+        for (int i = 0; i < elementos.length; i++) 
+            elementos[i] = gerador.nextInt(99999);
+                
+        /*for (int i = 0; i < elementos.length; i++) 
+            System.out.print(elementos[i] + ",");*/
+               
+        int teste = gerador.nextInt(99999);
         
         BuscaPararela thread;
-        for(int i = 0; i<5; i++)
-           thread = new BuscaPararela("thread" + i, gerador.nextInt(99), elementos);
-            
-
-
-        
-        
+        for (int i = 0; i < numero_threads; i++) {
+            thread = new BuscaPararela("thread"+i, teste, elementos, extensao*i,((extensao*i) + extensao-1));
+        }
 
     }
 }
